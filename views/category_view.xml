@@ -7,7 +7,6 @@
       <tree string = "Categories">
         <field name = "name" />
         <field name = "books_in_category" />
-        <field name = "books_ids" />
       </tree>
     </field>
   </record>

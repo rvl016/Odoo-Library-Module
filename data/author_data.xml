@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <data noupdate = "0">
+    <record id = "data_author_ravi" model = "library.author">
+      <field name = "name">Ravi Luz</field>
+<!--       <field name = "books_ids" eval = "[(6, 0, [ref('data_book_odoo_ed1_1'), ref('data_book_odoo_ed1_2'), ref( 'data_book_odoo_ed2_1')])]"/> -->
+    </record>
+
+    <record id = "data_author_caio" model = "library.author">
+      <field name = "name">Caio Magri</field>
+<!--       <field name = "books_ids" eval = "[(6, 0, [ref('data_book_odoo_ed1_1'), ref('data_book_odoo_ed1_2'), ref( 'data_book_odoo_ed2_1')])]"/> -->
+    </record>
+
+    <record id = "data_author_renato" model = "library.author">
+      <field name = "name">Renato Sabo</field>
+<!--       <field name = "books_ids" eval = "[(6, 0, [ref('data_book_python_ed1_1')])]" /> -->
+    </record>
+  </data>
+</odoo>

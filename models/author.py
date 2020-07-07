@@ -32,5 +32,5 @@ class Author( models.Model) :
   @api.depends( "books_ids")
   def _getTimesRented( self) :
     for author in self :
-      author.times_rented = self.env["library.rent"].search( 
-        domain = [("library.author.id", "=", self.id)]).count()
+      author.times_rented = self.env["library.rent"].search_count( 
+        domain = [("library.author.id", "=", self.id)])

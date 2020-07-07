@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <data noupdate = "0">
+    <record id = "data_rent_maria_odoo_1_1_1" model = "library.rent">
+      <field name = "customer_id" ref = "data_customer_maria" />
+      <field name = "book_id" ref = "data_book_odoo_ed1_1" />
+      <field name = "start_date" eval = "(DateTime.now() + timedelta( days = -6)).strftime('%Y-%m-%d 12:00:00')" />
+      <field name = "end_date" eval = "(DateTime.now() + timedelta( days = -4)).strftime('%Y-%m-%d 13:00:00')" />
+      <field name = "returned_date" eval = "(DateTime.now() + timedelta( days = -4)).strftime('%Y-%m-%d 14:00:00')" />
+    </record>
+
+    <record id = "data_rent_maria_odoo_1_1_2" model = "library.rent">
+      <field name = "customer_id" ref = "data_customer_maria" />
+      <field name = "book_id" ref = "data_book_odoo_ed1_1" />
+      <field name = "start_date" eval = "(DateTime.now() + timedelta( days = -3)).strftime('%Y-%m-%d 12:00:00')" />
+      <field name = "end_date" eval = "(DateTime.now() + timedelta( days = -2)).strftime('%Y-%m-%d 13:00:00')" />
+    </record>
+
+    <record id = "data_rent_jose_odoo_1_2_1" model = "library.rent">
+      <field name = "customer_id" ref = "data_customer_jose" />
+      <field name = "book_id" ref = "data_book_odoo_ed1_2" />
+      <field name = "start_date" eval = "(DateTime.now() + timedelta( days = -2)).strftime('%Y-%m-%d 12:00:00')" />
+      <field name = "end_date" eval = "(DateTime.now() + timedelta( days = 0)).strftime('%Y-%m-%d 13:00:00')" />
+      <field name = "returned_date" eval = "(DateTime.now() + timedelta( days = 0)).strftime('%Y-%m-%d 11:00:00')" />
+    </record>
+
+    <record id = "data_rent_abner_python_1_1_1" model = "library.rent">
+      <field name = "customer_id" ref = "data_customer_abner" />
+      <field name = "book_id" ref = "data_book_python_ed1_1" />
+      <field name = "start_date" eval = "(DateTime.now() + timedelta( days = -2)).strftime('%Y-%m-%d 12:00:00')" />
+      <field name = "end_date" eval = "(DateTime.now() + timedelta( days = 1)).strftime('%Y-%m-%d 13:00:00')" />
+    </record>
+  </data>
+</odoo>

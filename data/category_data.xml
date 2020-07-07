@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <data noupdate = "0">
+    <record id = "data_category_odoo" model = "library.category">
+      <field name = "name">Odoo</field>
+<!--       <field name = "books_ids" eval = "[(6, 0, [ref( 'data_book_odoo_ed1_1'), ref( 'data_book_odoo_ed1_2'), ref( 'data_book_odoo_ed2_1')])]" /> -->
+    </record>
+
+    <record id = "data_category_python" model = "library.category">
+      <field name = "name">Python</field>
+<!--       <field name = "books_ids" eval = "[(6, 0, [ref( 'data_book_python_ed1_1')])]" /> -->
+    </record>
+  </data>
+</odoo>

@@ -26,8 +26,8 @@ class Customer( models.Model) :
   @api.depends( "rents_ids")
   def _getOverdueRents( self) :
     for customer in self :
-      custumer.overdue_rents = customer.rents_ids.search( 
-        domain = ["rent.status", "=", "Overdue"]).count()
+      custumer.overdue_rents = customer.rents_ids.search_count( 
+        domain = ["rent.status", "=", "Overdue"])
 
   def _getRegisteredDate( self) :
     for customer in self :

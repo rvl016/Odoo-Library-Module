@@ -13,7 +13,8 @@ class Rent( models.Model) :
   ]
 
   name = fields.Char( string = "Customer - Book", compute = "_getRentName")
-  start_date = fields.Datetime( string = "Rented on", required = True)
+  start_date = fields.Datetime( string = "Rented on", required = True, 
+    default = lambda: fields.Datetime.now())
   end_date = fields.Datetime( string = "Return Deadline", required = True)
   status = fields.Char( string = "Rent Status", 
     compute = "_getRentStatus", read_only = True)
@@ -26,7 +27,7 @@ class Rent( models.Model) :
   @api.depends( "start_date", "end_date", "returned_date")
   def _getRentStatus( self) :
     for rent in self :
-      if rent.returned_date != None :
+      if rent.returned_date :
         rent.status = "Finalized"
       elif fields.Datetime.now() > rent.end_date :
         rent.status = "Overdue"
@@ -42,8 +43,6 @@ class Rent( models.Model) :
 
   @api.model
   def create( self, newRecordsValues) :
-    for newRecordValues in newRecordsValues :
-      newRecordValues["start_date"] = fields.Datetime.now()
     return super( Rent, self).create( newRecordsValues)
 
   @api.model

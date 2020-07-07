@@ -35,6 +35,12 @@
         'views/author_view.xml',
         'views/library_actions.xml',
         'views/library_menu.xml',
+
+        'data/category_data.xml',
+        'data/author_data.xml',
+        'data/book_data.xml',
+        'data/customer_data.xml',
+        'data/rents_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
