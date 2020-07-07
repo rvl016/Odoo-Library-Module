@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <record model = "ir.ui.view" id = "library_authors_main_view">
+    <field name = "model">library.author</field>
+    <field name = "arch" type = "xml">
+      <tree string = "Authors">
+        <field name = "name" />
+        <field name = "books_in_library" />
+        <field name = "times_rented" />
+      </tree>
+    </field>
+  </record>
+
+  <record id = "library_authors_form_view" model = "ir.ui.view">
+    <field name = "model">library.author</field>
+    <field name = "arch" type = "xml">
+      <form string = "Author">
+        <sheet>
+          <group col = "3" colspan = "2">
+            <field name = "name" />
+          </group>
+          <group>
+            <field name = "books_in_library" />
+            <field name = "times_rented" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

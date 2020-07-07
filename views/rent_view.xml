@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <record model = "ir.ui.view" id = "library_rents_main_view">
+    <field name = "model">library.rent</field>
+    <field name = "arch" type = "xml">
+      <tree string = "Rents">
+        <field name = "book_id" />
+        <field name = "customer_id" />
+        <field name = "start_date" />
+        <field name = "end_date" />
+        <field name = "status" />
+        <field name = "returned_date" />
+      </tree>
+    </field>
+  </record>
+
+  <record id = "library_rents_form_view" model = "ir.ui.view">
+    <field name = "model">library.rent</field>
+    <field name = "arch" type = "xml">
+      <form string = "Rent">
+        <sheet>
+          <group>
+            <field name = "book_id" />
+            <field name = "customer_id" />
+            <field name = "status" />
+          </group>
+          <group>
+            <field name = "start_date" />
+            <field name = "end_date" />
+            <field name = "returned_date" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

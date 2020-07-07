@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+  <record id = "library_rents_main_action" model = "ir.actions.act_window">
+    <field name = "name">Rents</field>
+    <field name = "type">ir.actions.act_window</field>
+    <field name = "res_model">library.rent</field>
+    <field name = "view_mode">tree,form</field>
+    <!-- <field name = "view_id" ref = "library_rents_main_view" /> -->
+  </record>
+
+
+  <record id = "library_authors_main_action" model = "ir.actions.act_window">
+    <field name = "name">Authors</field>
+    <field name = "type">ir.actions.act_window</field>
+    <field name = "res_model">library.author</field>
+    <field name = "view_mode">tree,form</field>
+    <!-- <field name = "view_id" ref = "library_authors_main_view" /> -->
+  </record>
+
+  <record id = "library_books_main_action" model = "ir.actions.act_window">
+    <field name = "name">Books</field>
+    <field name = "type">ir.actions.act_window</field>
+    <field name = "res_model">library.book</field>
+    <field name = "view_mode">tree,form</field>
+  </record>
+
+  <record id = "library_customers_main_action" model = "ir.actions.act_window">
+    <field name = "name">Customers</field>
+    <field name = "type">ir.actions.act_window</field>
+    <field name = "res_model">library.customer</field>
+    <field name = "view_mode">tree,form</field>
+  </record>
+
+  <record id = "library_categories_main_action" 
+    model = "ir.actions.act_window">
+    <field name = "name">Categories</field>
+    <field name = "type">ir.actions.act_window</field>
+    <field name = "res_model">library.category</field>
+    <field name = "view_mode">tree,form</field>
+  </record>
+</odoo>

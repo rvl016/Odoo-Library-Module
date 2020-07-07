@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <record model = "ir.ui.view" id = "library_books_main_view">
+    <field name = "model">library.book</field>
+    <field name = "arch" type = "xml">
+      <tree string = "Books" decoration-success = "available == True"
+        decoration-warning = "available == False">
+        <field name = "name" />
+        <field name = "editor" />
+        <field name = "edition" />
+        <field name = "isbn" />
+        <field name = "authors_ids" />
+        <field name = "category_id" />
+        <field name = "available" />
+        <field name = "times_rented" />
+      </tree>
+    </field>
+  </record>
+
+  <record id = "library_books_form_view" model = "ir.ui.view" >
+    <field name = "model">library.book</field>
+    <field name = "arch" type = "xml">
+      <form string = "Book">
+        <sheet>
+          <group col = "5">
+            <group colspan = "4">
+              <field name = "name" />
+            </group>
+            <group colspan = "1">
+              <field name = "edition" />
+            </group>
+          </group>
+          <group>
+            <field name = "category_id" />
+            <field name = "isbn" />
+            <field name = "editor" />
+          </group>
+          <group>
+            <field name = "available" />
+            <field name = "times_rented" />
+          </group>
+          <group>
+            <field name = "authors_ids" />
+          </group>
+          <group>
+            <field name = "rents_ids" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

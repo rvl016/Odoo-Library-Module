@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <record id = "library_categories_main_view" model = "ir.ui.view">
+    <field name = "model">library.category</field>
+    <field name = "arch" type = "xml">
+      <tree string = "Categories">
+        <field name = "name" />
+        <field name = "books_in_category" />
+        <field name = "books_ids" />
+      </tree>
+    </field>
+  </record>
+
+  <record id = "library_categories_form_view" model = "ir.ui.view">
+    <field name = "model">library.category</field>
+    <field name = "arch" type = "xml">
+      <form string = "Category">
+        <sheet>
+          <group col = "3" colspan = "1">
+            <field name = "name" />
+          </group>
+          <group>
+            <field name = "books_in_category" />
+          </group>
+          <group>
+            <field name = "books_ids" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

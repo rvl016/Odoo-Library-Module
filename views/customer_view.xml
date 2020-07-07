@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<odoo>
+  <record model = "ir.ui.view" id = "library_customers_main_view">
+    <field name = "model">library.customer</field>
+    <field name = "arch" type = "xml">
+      <tree string = "Customers" default_order = "overdue_rents desc"
+        decoration-danger = "overdue_rents &gt; 0">
+        <field name = "name" />
+        <field name = "total_rents" />
+        <field name = "overdue_rents" />
+        <field name = "registered_on" />
+        <field name = "rents_ids" />
+      </tree>
+    </field>
+  </record>
+
+  <record id = "library_customers_main_view" model = "ir.ui.view">
+    <field name = "model">library.customer</field>
+    <field name = "arch" type = "xml">
+      <form string = "Customer">
+        <sheet>
+          <group>
+            <field name = "name" />
+            <field name = "registered_on" />
+          </group>
+          <group>
+            <field name = "total_rents" />
+            <field name = "overdue_rents" />
+          </group>
+          <group>
+            <field name = "rents_ids" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>
