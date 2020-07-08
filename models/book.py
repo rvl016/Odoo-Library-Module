@@ -37,13 +37,14 @@ class Book( models.Model) :
   @api.depends( "rents_ids")
   def _getTimesRented( self) :
     for book in self :
-      book.times_rented = len( book.rents_ids.id)
+      book.times_rented = len( book.rents_ids)
 
   @api.depends( "rents_ids")
   def _getAvailability( self) :
     for book in self :
+      print( book.rents_ids.mapped( 'status'))
       book.available = all( 
-        status == "Finalized" for status in book.rents_ids.status)
+        status == "Finalized" for status in book.rents_ids.mapped( 'status'))
 
   @api.constrains( "authors_ids")
   def _has_book_at_least_one_author( self) :

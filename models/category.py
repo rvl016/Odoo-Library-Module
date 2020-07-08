@@ -13,9 +13,8 @@ class Category( models.Model) :
   books_in_category = fields.Integer( string = "Books titles quantity", 
     compute = "_get_titles_number")
 
-  @api.depends( "books_ids")
   def _get_titles_number( self) :
     for category in self :
-      category.books_in_category = len( category.books_ids)
-      #category.books_in_category = category.books_ids.read_group( 
-      #  fields = ['name:count_distinct'], groupby = ['name'])
+      records = category.env['library.book'].search( 
+        args = [('category_id', '=', category.id)])
+      category.books_in_category = len( set( records.mapped( 'name')))

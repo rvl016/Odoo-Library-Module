@@ -23,11 +23,11 @@ class Customer( models.Model) :
     for customer in self :
       customer.total_rents = len( customer.rents_ids)
 
-  @api.depends( "rents_ids")
   def _getOverdueRents( self) :
     for customer in self :
-      custumer.overdue_rents = customer.rents_ids.search_count( 
-        domain = ["rent.status", "=", "Overdue"])
+      overdue_records = customer.rents_ids.filtered( 
+        lambda r: r.status == "Overdue")
+      customer.overdue_rents = len( overdue_records)
 
   def _getRegisteredDate( self) :
     for customer in self :
