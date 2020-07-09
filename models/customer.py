@@ -8,8 +8,8 @@ class Customer( models.Model) :
   _order = "overdue_rents DESC"
 
   name = fields.Char( string = "Name", required = True)
-  registered_on = fields.Datetime( string = "Registered on", 
-    compute = "_getRegisteredDate", store = True)
+  registered_on = fields.Datetime( string = "Registered on", required = True, 
+    default = lambda self: fields.Datetime.now())
   total_rents = fields.Integer( string = "Number of Rents",
     compute = "_getTotalRents")
   overdue_rents = fields.Integer( string = "Number of Overdue Rents", 

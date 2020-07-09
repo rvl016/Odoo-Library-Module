@@ -12,30 +12,36 @@ class Rent( models.Model) :
       "End date should be after start date.")
   ]
 
-  name = fields.Char( string = "Customer - Book", compute = "_getRentName")
+  name = fields.Char( string = "Customer - Book", compute = "_get_rent_name")
   start_date = fields.Datetime( string = "Rented on", required = True, 
-    default = lambda: fields.Datetime.now())
+    default = lambda self: fields.Datetime.now())
   end_date = fields.Datetime( string = "Return Deadline", required = True)
   status = fields.Char( string = "Rent Status", 
-    compute = "_getRentStatus", read_only = True)
+    compute = "_get_rent_status", readonly = True)
   returned_date = fields.Datetime( string = "Returned on", default = None)
   customer_id = fields.Many2one( comodel_name = "library.customer",
     ondelete = "set null")
   book_id = fields.Many2one( comodel_name = "library.book", 
     ondelete = "cascade")
+  book_title = fields.Char( string = "Book title", related = 'book_id.name')
+  book_edition = fields.Integer( string = "Book edition", 
+    related = 'book_id.edition')
+  customer_name = fields.Char( string = "Customer", 
+    related = 'customer_id.name')
 
-  @api.depends( "start_date", "end_date", "returned_date")
-  def _getRentStatus( self) :
+  @api.depends( "end_date", "returned_date")
+  def _get_rent_status( self) :
+    now = fields.Datetime.now()
     for rent in self :
       if rent.returned_date :
         rent.status = "Finalized"
-      elif fields.Datetime.now() > rent.end_date :
+      elif rent.end_date and now > rent.end_date :
         rent.status = "Overdue"
       else :
         rent.status = "In time"
 
   @api.depends( "customer_id", "book_id")
-  def _getRentName( self) :
+  def _get_rent_name( self) :
     for rent in self :
       customer_name = rent.customer_id.name or "Unknown Customer"
       book_name = rent.book_id.name or "Unknown Book"
@@ -46,10 +52,9 @@ class Rent( models.Model) :
     return super( Rent, self).create( newRecordsValues)
 
   @api.model
-  def toogleReturned( self) :
+  def set_returned( self, returned_status) :
     for record in self :
-      if record.returned_date == None :
-        record.returned_date = fields.Datetime.now()
+      if returned_status :
+        record.write( { 'returned_date': fields.Datetime.now() })
       else :
-        record.returned_date = None
-    self.flush()
+        record.write( { 'returned_date': None })

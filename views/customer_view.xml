@@ -10,7 +10,6 @@
         <field name = "total_rents" />
         <field name = "overdue_rents" />
         <field name = "registered_on" />
-        <field name = "rents_ids" />
       </tree>
     </field>
   </record>

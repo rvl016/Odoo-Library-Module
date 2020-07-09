@@ -24,7 +24,7 @@ class Author( models.Model) :
 
   def _get_number_of_books( self) :
     for author in self :
-      books_names = author.books_ids.mapped( 'name'))
+      books_names = author.books_ids.mapped( 'name')
       author.books_in_library = len( set( books_names))
 
   def _get_times_rented( self) :

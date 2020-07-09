@@ -10,7 +10,7 @@
         <field name = "edition" />
         <field name = "isbn" />
         <field name = "editor" />
-        <field name = "authors_ids" widget = "manymany_tags" />
+        <field name = "authors_ids" widget = "many2many_tags" />
         <field name = "category_id" />
         <field name = "available" />
         <field name = "times_rented" />

@@ -1,13 +1,42 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <odoo>
+
   <record id = "library_rents_main_action" model = "ir.actions.act_window">
     <field name = "name">Rents</field>
     <field name = "type">ir.actions.act_window</field>
     <field name = "res_model">library.rent</field>
-    <field name = "view_mode">tree,form</field>
-    <!-- <field name = "view_id" ref = "library_rents_main_view" /> -->
+    <field name = "view_mode">tree,form,search</field>
+    <field name = "view_ids" eval = "[(5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('library_rents_main_view')}),
+      (0, 0, {'view_mode': 'form', 'view_id': ref('library_rents_form_view')})]"
+    />
+    <field name = "search_view_id" ref = "library_rents_search_view" />
   </record>
 
+    <record id = "library_rents_set_returned_action" model = "ir.actions.server">
+      <field name = "name">Set Returned</field>
+      <field name = "type">ir.actions.server</field>
+      <field name = "model_id" ref = "model_library_rent" />
+      <field name = "binding_model_id" ref = "library.model_library_rent" />
+      <field name = "state">code</field>
+      <field name = "code"> 
+        if records :
+          records.set_returned( True)
+      </field>
+    </record>
+
+    <record id = "library_rents_unset_returned_action" 
+      model = "ir.actions.server">
+      <field name = "name">Unset Returned</field>
+      <field name = "type">ir.actions.server</field>
+      <field name = "model_id" ref = "model_library_rent" />
+      <field name = "binding_model_id" ref = "library.model_library_rent" />
+      <field name = "state">code</field>
+      <field name = "code"> 
+        if records :
+          records.set_returned( False)
+      </field>
+    </record>
 
   <record id = "library_authors_main_action" model = "ir.actions.act_window">
     <field name = "name">Authors</field>

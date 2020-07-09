@@ -8,6 +8,7 @@
         <field name = "name" />
         <field name = "books_in_library" />
         <field name = "times_rented" />
+        <field name = "books_ids" widget = "many2many" />
       </tree>
     </field>
   </record>

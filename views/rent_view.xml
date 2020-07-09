@@ -4,14 +4,33 @@
   <record model = "ir.ui.view" id = "library_rents_main_view">
     <field name = "model">library.rent</field>
     <field name = "arch" type = "xml">
-      <tree string = "Rents">
-        <field name = "book_id" />
-        <field name = "customer_id" />
+      <tree string = "Rents" default_order = "end_date desc"
+        decoration-danger = "status == 'Overdue'"
+        decoration-success = "status == 'Finalized'"
+        decoration-warning = "status == 'In time'">
+        <field name = "customer_name" />
+        <field name = "book_title" />
+        <field name = "book_edition" />
         <field name = "start_date" />
         <field name = "end_date" />
         <field name = "status" />
         <field name = "returned_date" />
       </tree>
+    </field>
+  </record> 
+
+  <record id = "library_rents_search_view" model = "ir.ui.view" >
+    <field name = "name">Rents Search View</field>
+    <field name = "model">library.rent</field>
+    <field name = "arch" type = "xml">
+      <search string = "Search View">
+        <filter name = "filter_returned" string = "Not returned yet" 
+          domain = "[('returned_date', '=', False)]" />
+        <filter name = "group_customer" string = "Customer" 
+          context = "{ 'group_by': 'customer_id' }" />
+        <filter name = "group_customer_book" string = "Book" 
+          context = "{ 'group_by': 'book_id' }" />
+      </search>
     </field>
   </record>
 
