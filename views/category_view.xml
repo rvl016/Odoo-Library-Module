@@ -16,15 +16,25 @@
     <field name = "arch" type = "xml">
       <form string = "Category">
         <sheet>
-          <group col = "3" colspan = "1">
-            <field name = "name" />
+          <div class = "oe_title">
+            <h1 class = "oe_edit_only" >Book Category</h1>
+            <h1 class = "oe_read_only" >
+              <field name = "name"/>
+            </h1>
+          </div>
+          <group col = "5" class = "oe_edit_only">
+            <group colspan = "2">
+              <field name = "name" />
+            </group>
           </group>
-          <group>
+          <group class = "oe_read_only">
             <field name = "books_in_category" />
           </group>
-          <group>
-            <field name = "books_ids" />
-          </group>
+          <notebook>
+            <page string = "Books">
+              <field name = "books_ids" />
+            </page>
+          </notebook>
         </sheet>
       </form>
     </field>

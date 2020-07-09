@@ -6,8 +6,9 @@
     <field name = "arch" type = "xml">
       <tree string = "Books" decoration-success = "available == True"
         decoration-warning = "available == False">
-        <field name = "name" />
+        <field name = "title" />
         <field name = "edition" />
+        <field name = "copy_number" />
         <field name = "isbn" />
         <field name = "editor" />
         <field name = "authors_ids" widget = "many2many_tags" />
@@ -18,34 +19,69 @@
     </field>
   </record>
 
+  <record id = "library_books_search_view" model = "ir.ui.view">
+    <field name = "name">Books Search View</field>
+    <field name = "model">library.book</field>
+    <field name = "arch" type = "xml">
+      <search string = "Books Search View">
+        <filter name = "group_title" string = "Title" 
+          context = "{ 'group_by': 'title' }" />
+        <filter name = "group_category" string = "Category"
+          context = "{ 'group_by': 'category_id' }" />
+        <filter name = "group_isbn" string = "ISBN" 
+          context = "{ 'group_by': 'isbn' }" />
+      </search>
+    </field>
+  </record>
+
   <record id = "library_books_form_view" model = "ir.ui.view">
     <field name = "model">library.book</field>
     <field name = "arch" type = "xml">
       <form string = "Book">
         <sheet>
-          <group col = "5">
-            <group colspan = "4">
+          <div class = "oe_title">
+            <h1 class = "oe_read_only">
               <field name = "name" />
+            </h1>
+            <h1 class = "oe_edit_only">
+              Book
+            </h1>
+          </div>
+          <group col = "6">
+            <group colspan = "3">
+              <field name = "title" />
             </group>
-            <group colspan = "1">
+            <group colspan = "2">
               <field name = "edition" />
             </group>
           </group>
-          <group>
-            <field name = "category_id" />
-            <field name = "isbn" />
-            <field name = "editor" />
+          <group col = "3">
+            <group colspan = "1">
+              <field name = "category_id" />
+            </group>
+            <group colspan = "1">
+              <field name = "isbn" />
+            </group>
+            <group colspan = "1">
+              <field name = "editor" />
+            </group>
+          </group>
+          <group col = "6" class = "oe_read_only">
+            <group colspan = "1">
+              <field name = "available" />
+            </group>
+            <group colspan = "1">
+              <field name = "times_rented" />
+            </group>
           </group>
           <group>
-            <field name = "available" />
-            <field name = "times_rented" />
+            <field name = "authors_ids" widget = "many2many_tags" />
           </group>
-          <group>
-            <field name = "authors_ids" />
-          </group>
-          <group>
-            <field name = "rents_ids" />
-          </group>
+          <notebook>
+            <page string = "Rents">
+              <field name = "rents_ids" />
+            </page>
+          </notebook>
         </sheet>
       </form>
     </field>

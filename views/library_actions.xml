@@ -50,7 +50,12 @@
     <field name = "name">Books</field>
     <field name = "type">ir.actions.act_window</field>
     <field name = "res_model">library.book</field>
-    <field name = "view_mode">tree,form</field>
+    <field name = "view_mode">tree,form,search</field>
+    <field name = "view_ids" eval = "[(5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('library_books_main_view')}),
+      (0, 0, {'view_mode': 'form', 'view_id': ref('library_books_form_view')})]"
+    />
+    <field name = "search_view_id" ref = "library_books_search_view" />
   </record>
 
   <record id = "library_customers_main_action" model = "ir.actions.act_window">
@@ -58,6 +63,10 @@
     <field name = "type">ir.actions.act_window</field>
     <field name = "res_model">library.customer</field>
     <field name = "view_mode">tree,form</field>
+    <field name = "view_ids" eval = "[(5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('library_customers_main_view')}),
+      (0, 0, {'view_mode': 'form', 'view_id': ref('library_customers_form_view')})]"
+    />
   </record>
 
   <record id = "library_categories_main_action" 

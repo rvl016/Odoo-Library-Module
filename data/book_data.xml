@@ -3,7 +3,7 @@
 <odoo>
   <data noupdate = "0">
     <record id = "data_book_odoo_ed1_1" model = "library.book">
-      <field name = "name">Odoo Learning</field>
+      <field name = "title">Odoo Learning</field>
       <field name = "editor">None</field>
       <field name = "edition">1</field>
       <field name = "isbn">1234567890123</field>
@@ -13,7 +13,7 @@
     </record>
 
     <record id = "data_book_odoo_ed1_2" model = "library.book">
-      <field name = "name">Odoo Learning</field>
+      <field name = "title">Odoo Learning</field>
       <field name = "editor">None</field>
       <field name = "edition">1</field>
       <field name = "isbn">1234567890123</field>
@@ -23,7 +23,7 @@
     </record>
 
     <record id = "data_book_odoo_ed2_1" model = "library.book">
-      <field name = "name">Odoo Learning</field>
+      <field name = "title">Odoo Learning</field>
       <field name = "editor">None</field>
       <field name = "edition">2</field>
       <field name = "isbn">1234567890127</field>
@@ -32,7 +32,7 @@
     </record>
 
     <record id = "data_book_python_ed1_1" model = "library.book">
-      <field name = "name">Python Learning</field>
+      <field name = "title">Python Learning</field>
       <field name = "editor">FSF</field>
       <field name = "edition">1</field>
       <field name = "isbn">1231567890127</field>

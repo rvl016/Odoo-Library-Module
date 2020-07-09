@@ -11,6 +11,7 @@
         <field name = "customer_name" />
         <field name = "book_title" />
         <field name = "book_edition" />
+        <field name = "book_copy_number" />
         <field name = "start_date" />
         <field name = "end_date" />
         <field name = "status" />
@@ -23,13 +24,21 @@
     <field name = "name">Rents Search View</field>
     <field name = "model">library.rent</field>
     <field name = "arch" type = "xml">
-      <search string = "Search View">
+      <search string = "Rents Search View">
+        <field name = "book_id" />
+        <field name = "book_title" />
+        <field name = "book_edition" />
+        <field name = "customer_name" />
         <filter name = "filter_returned" string = "Not returned yet" 
           domain = "[('returned_date', '=', False)]" />
-        <filter name = "group_customer" string = "Customer" 
-          context = "{ 'group_by': 'customer_id' }" />
-        <filter name = "group_customer_book" string = "Book" 
-          context = "{ 'group_by': 'book_id' }" />
+        <group expand = "0" string = "Customer">
+          <filter name = "group_customer" string = "Customer" 
+            context = "{ 'group_by': 'customer_id' }" />
+        </group>
+        <group expand = "0" string = "Book">
+          <filter name = "group_book" string = "Book" 
+            context = "{ 'group_by': 'book_id' }" />
+        </group>
       </search>
     </field>
   </record>
@@ -39,15 +48,35 @@
     <field name = "arch" type = "xml">
       <form string = "Rent">
         <sheet>
-          <group>
-            <field name = "book_id" />
-            <field name = "customer_id" />
-            <field name = "status" />
+          <div class = "oe_title">
+            <h1 class = "oe_read_only">
+              <field name = "name" />
+            </h1>
+            <h1 class = "oe_edit_only">
+              Rent
+            </h1>
+          </div>
+          <group col = "2" class = "oe_edit_only">
+            <group colspan = "1">
+              <field name = "book_id" />
+            </group>
+            <group colspan = "1">
+              <field name = "customer_id" />
+            </group>
+          </group>
+          <group col = "3">
+            <group colspan = "1">
+              <field name = "start_date" />
+            </group>
+            <group colspan = "1">
+              <field name = "end_date" />
+            </group>
+            <group colspan = "1">
+              <field name = "returned_date" />
+            </group>
           </group>
           <group>
-            <field name = "start_date" />
-            <field name = "end_date" />
-            <field name = "returned_date" />
+            <field name = "status" class = "oe_read_only" />
           </group>
         </sheet>
       </form>

@@ -6,9 +6,9 @@
     <field name = "arch" type = "xml">
       <tree string = "Authors">
         <field name = "name" />
-        <field name = "books_in_library" />
+        <field name = "books_in_library"/>
         <field name = "times_rented" />
-        <field name = "books_ids" widget = "many2many" />
+        <field name = "books_ids" widget = "many2many_tags" />
       </tree>
     </field>
   </record>
@@ -18,13 +18,32 @@
     <field name = "arch" type = "xml">
       <form string = "Author">
         <sheet>
-          <group col = "3" colspan = "2">
-            <field name = "name" />
+          <div class = "oe_title">
+            <h1 class = "oe_read_only">
+              <field name = "name" />
+            </h1>
+            <h1 class = "oe_edit_only">
+              Author
+            </h1>
+          </div>
+          <group col = "4" class = "oe_edit_only">
+            <group colspan = "2">
+              <field name = "name" />
+            </group>
           </group>
-          <group>
-            <field name = "books_in_library" />
-            <field name = "times_rented" />
+          <group col = "4" class = "oe_read_only">
+            <group colpan = "1">
+              <field name = "books_in_library"/>
+            </group>
+            <group colspan = "1">
+              <field name = "times_rented"/>
+            </group>
           </group>
+          <notebook>
+            <page string = "Books">
+              <field name = "books_ids" />
+            </page>
+          </notebook>
         </sheet>
       </form>
     </field>

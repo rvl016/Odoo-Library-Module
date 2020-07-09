@@ -23,8 +23,10 @@ class Rent( models.Model) :
     ondelete = "set null")
   book_id = fields.Many2one( comodel_name = "library.book", 
     ondelete = "cascade")
-  book_title = fields.Char( string = "Book title", related = 'book_id.name')
-  book_edition = fields.Integer( string = "Book edition", 
+  book_copy_number = fields.Integer( string = "Book Copy Number", 
+    related = "book_id.copy_number")
+  book_title = fields.Char( string = "Book Title", related = 'book_id.title')
+  book_edition = fields.Integer( string = "Book Edition", 
     related = 'book_id.edition')
   customer_name = fields.Char( string = "Customer", 
     related = 'customer_id.name')
