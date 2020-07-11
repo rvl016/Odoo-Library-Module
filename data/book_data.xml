@@ -28,7 +28,8 @@
       <field name = "edition">2</field>
       <field name = "isbn">1234567890127</field>
       <field name = "category_id" ref = "data_category_odoo" />
-      <field name = "authors_ids" eval = "[(6, 0, [ref( 'data_author_ravi'), ref('data_author_caio')])]" />
+      <field name = "authors_ids" eval = 
+        "[(6, 0, [ref( 'data_author_ravi'), ref('data_author_caio')])]" />
     </record>
 
     <record id = "data_book_python_ed1_1" model = "library.book">

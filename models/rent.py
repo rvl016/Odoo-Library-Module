@@ -1,5 +1,6 @@
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class Rent( models.Model) :
 
@@ -31,6 +32,37 @@ class Rent( models.Model) :
   customer_name = fields.Char( string = "Customer", 
     related = 'customer_id.name')
 
+  @api.model
+  def create( self, newRecordsValues) :
+    self._enforce_book_availability( newRecordsValues['book_id'])
+    self._enforce_book_availability( newRecordsValues['book_id'])
+    return super( Rent, self).create( newRecordsValues)
+
+  def toggle_returned( self) :
+    for book in self :
+      if book.returned_date :
+        book.set_returned( False)
+      else :
+        book.set_returned( True)
+
+  @api.model
+  def set_returned( self, returned_status) :
+    for record in self :
+      if returned_status :
+        record.returned_date = fields.Datetime.now()
+      else :
+        record.returned_date = None
+
+  def _enforce_book_availability( self, book_id) :
+    book = self.env['library.book'].browse( book_id)
+    if not book.get_availability() :
+      raise ValidationError( "This book is not available!")
+
+  def _enforce_no_customer_overdues( self, customer_id) :
+    customer = self.env['library.customer'].browse( customer_id)
+    if customer.overdue_rents > 0 :
+      raise ValidationError( "This Customer has overdue rents!")
+
   @api.depends( "end_date", "returned_date")
   def _get_rent_status( self) :
     now = fields.Datetime.now()
@@ -48,15 +80,3 @@ class Rent( models.Model) :
       customer_name = rent.customer_id.name or "Unknown Customer"
       book_name = rent.book_id.name or "Unknown Book"
       rent.name = f"{ customer_name } - { book_name }"
-
-  @api.model
-  def create( self, newRecordsValues) :
-    return super( Rent, self).create( newRecordsValues)
-
-  @api.model
-  def set_returned( self, returned_status) :
-    for record in self :
-      if returned_status :
-        record.write( { 'returned_date': fields.Datetime.now() })
-      else :
-        record.write( { 'returned_date': None })

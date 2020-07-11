@@ -15,6 +15,9 @@
         <field name = "category_id" />
         <field name = "available" />
         <field name = "times_rented" />
+
+        <button icon = "fa-files-o" string = "Register New Copy" 
+          type = "object" name = "register_new_copy" />
       </tree>
     </field>
   </record>

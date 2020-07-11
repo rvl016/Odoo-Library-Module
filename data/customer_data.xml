@@ -4,17 +4,14 @@
   <data noupdate = "0">
     <record id = "data_customer_maria" model = "library.customer">
       <field name = "name">Maria</field>
-<!--       <field name = "rents_ids" eval = "[(6, 0, [ref()])]" /> -->
     </record>
 
     <record id = "data_customer_jose" model = "library.customer">
       <field name = "name">José</field>
-<!--       <field name = "rents_ids" eval = "[(6, 0, [ref()])]" /> -->
     </record>
 
     <record id = "data_customer_abner" model = "library.customer">
       <field name = "name">Abner</field>
-<!--       <field name = "rents_ids" eval = "[(6, 0, [ref('')])]" /> -->
     </record>
   </data>
 </odoo>

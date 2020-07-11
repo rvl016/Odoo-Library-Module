@@ -17,4 +17,4 @@ class Category( models.Model) :
     for category in self :
       records = category.env['library.book'].search( 
         args = [('category_id', '=', category.id)])
-      category.books_in_category = len( set( records.mapped( 'name')))
+      category.books_in_category = len( set( records.mapped( 'title')))

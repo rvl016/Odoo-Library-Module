@@ -27,7 +27,10 @@
 
     # always loaded
     'data': [
+        'security/security_groups.xml',
+        'security/security_rules.xml',
         'security/ir.model.access.csv',
+
         'views/category_view.xml',
         'views/book_view.xml',
         'views/customer_view.xml',

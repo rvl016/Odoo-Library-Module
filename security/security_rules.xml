@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+
+<odoo>
+  <record model = "ir.rule" id = "customer_record_rule">
+    <field name = "name">Customer can only see his record</field>
+    <field name = "model_id" ref = "model_library_customer" />
+    <field name = "groups" eval = "[(6, 0, [ref( 'group_library_customer')])]" />
+    <field name = "domain_force">[('id', '=', user.id)]</field>
+    <field name = "perm_create" eval = "False" />
+    <field name = "perm_unlink" eval = "False" />
+  </record>
+
+  <record model = "ir.rule" id = "rent_customer_record_rule">
+    <field name = "name">Customer can only see his record</field>
+    <field name = "model_id" ref = "model_library_rent"></field>
+    <field name = "groups" eval = "[(6, 0, [ref( 'group_library_customer')])]" />
+    <field name = "domain_force">[('customer_id.id', '=', user.id)]</field>
+    <field name = "perm_create" eval = "False" />
+    <field name = "perm_write" eval = "False" />
+    <field name = "perm_unlink" eval = "False" />
+  </record>
+</odoo>

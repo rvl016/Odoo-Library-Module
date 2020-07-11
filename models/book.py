@@ -1,5 +1,6 @@
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class Book( models.Model) :
 
@@ -33,10 +34,20 @@ class Book( models.Model) :
 
   authors_ids = fields.Many2many( comodel_name = "library.author", 
     relation = "authors_book", column1 = "book_id", 
-    column2 = "author_id", string = "Authors", required = True)
+    column2 = "author_id", string = "Authors", required = True,
+    copy = True)
 
   rents_ids = fields.One2many( comodel_name = "library.rent", 
-    inverse_name = "book_id")
+    inverse_name = "book_id", copy = False)
+
+  def register_new_copy( self) :
+    for book in self :
+      book.copy()
+
+  def get_availability( self) :
+    for book in self :
+      book._get_availability()
+      return book.available
 
   @api.depends( "title", "edition", "copy_number")
   def _get_book_identification( self) :
@@ -62,6 +73,7 @@ class Book( models.Model) :
     for book in self :
       book.available = all( 
         status == "Finalized" for status in book.rents_ids.mapped( 'status'))
+      print( book.name, book.rents_ids.mapped( 'status'))
 
   @api.constrains( "authors_ids")
   def _has_book_at_least_one_author( self) :

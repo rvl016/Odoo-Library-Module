@@ -16,6 +16,9 @@
         <field name = "end_date" />
         <field name = "status" />
         <field name = "returned_date" />
+
+        <button icon = "fa-step-backward" string = "Toggle Return" 
+          type = "object" name = "toggle_returned" />
       </tree>
     </field>
   </record> 
